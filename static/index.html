@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Biblioteca</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topo">
+    <h1>📚 Biblioteca</h1>
+    <nav class="abas" role="tablist">
+      <button class="aba ativa" data-aba="livros" role="tab">Livros</button>
+      <button class="aba" data-aba="usuarios" role="tab">Usuários</button>
+      <button class="aba" data-aba="emprestimos" role="tab">Empréstimos</button>
+      <button class="aba" data-aba="resumo" role="tab">Resumo</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- LIVROS -->
+    <section id="aba-livros" class="painel ativo">
+      <div class="grade">
+        <form id="form-livro" class="cartao">
+          <h2>Cadastrar livro</h2>
+          <label>Título <input name="titulo" required></label>
+          <label>Autor <input name="autor" required></label>
+          <div class="linha">
+            <label>Ano <input name="ano" type="number" required></label>
+            <label>Cópias <input name="copias" type="number" min="1" value="1" required></label>
+          </div>
+          <button type="submit">Cadastrar</button>
+        </form>
+
+        <div class="cartao largo">
+          <div class="cabecalho">
+            <h2>Acervo</h2>
+            <input id="busca-livro" type="search" placeholder="Buscar por título…">
+          </div>
+          <table>
+            <thead><tr><th>ID</th><th>Título</th><th>Autor</th><th>Ano</th><th>Disponíveis</th><th></th></tr></thead>
+            <tbody id="tabela-livros"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- USUARIOS -->
+    <section id="aba-usuarios" class="painel">
+      <div class="grade">
+        <form id="form-usuario" class="cartao">
+          <h2>Cadastrar usuário</h2>
+          <label>Nome <input name="nome" required></label>
+          <label>E-mail <input name="email" required></label>
+          <button type="submit">Cadastrar</button>
+        </form>
+
+        <div class="cartao largo">
+          <h2>Usuários</h2>
+          <table>
+            <thead><tr><th>ID</th><th>Nome</th><th>E-mail</th><th>Empréstimos ativos</th></tr></thead>
+            <tbody id="tabela-usuarios"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- EMPRESTIMOS -->
+    <section id="aba-emprestimos" class="painel">
+      <div class="grade">
+        <form id="form-emprestimo" class="cartao">
+          <h2>Novo empréstimo</h2>
+          <label>Usuário <select name="usuario_id" required></select></label>
+          <label>Livro <select name="livro_id" required></select></label>
+          <button type="submit">Emprestar</button>
+        </form>
+
+        <div class="cartao largo">
+          <div class="cabecalho">
+            <h2>Empréstimos</h2>
+            <label class="check"><input id="so-ativos" type="checkbox" checked> Somente ativos</label>
+          </div>
+          <table>
+            <thead><tr><th>ID</th><th>Livro</th><th>Usuário</th><th>Emprestado</th><th>Previsto</th><th>Situação</th><th></th></tr></thead>
+            <tbody id="tabela-emprestimos"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section id="aba-resumo" class="painel">
+      <div class="numeros" id="numeros"></div>
+      <div class="grade">
+        <div class="cartao">
+          <h2>Mais emprestados</h2>
+          <ol id="mais-emprestados" class="lista"></ol>
+        </div>
+        <div class="cartao largo">
+          <h2>Atrasados</h2>
+          <table>
+            <thead><tr><th>Livro</th><th>Usuário</th><th>Previsto para</th></tr></thead>
+            <tbody id="tabela-atrasados"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="aviso" class="aviso" role="status" aria-live="polite"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
