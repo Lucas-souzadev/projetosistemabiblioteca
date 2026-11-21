@@ -57,4 +57,4 @@ Na interface web os dados são gravados em `dados/` após cada alteração.
 
 O sistema não tem testes automatizados e a documentação é mínima. Os dados ficam em memória enquanto o programa roda e são gravados em `dados/` ao sair.
 
-## teste
+## test
