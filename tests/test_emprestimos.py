@@ -17,9 +17,9 @@ def limpar_dados():
 def test_usuario_pode_realizar_tres_emprestimos():
     usuario = usuarios.cadastrar_usuario("Joao", "joao@email.com")
 
-    livro1 = livros.cadastrar_livro("Livro 1", "Autor 1", 2020)
-    livro2 = livros.cadastrar_livro("Livro 2", "Autor 2", 2021)
-    livro3 = livros.cadastrar_livro("Livro 3", "Autor 3", 2022)
+    livro1 = livros.cadastrar_livro("Livro 1", "Autor Um", 2020)
+    livro2 = livros.cadastrar_livro("Livro 2", "Autor Dois", 2021)
+    livro3 = livros.cadastrar_livro("Livro 3", "Autor Três", 2022)
 
     emprestimos.emprestar(usuario["id"], livro1["id"], date.today())
     emprestimos.emprestar(usuario["id"], livro2["id"], date.today())
@@ -31,10 +31,10 @@ def test_usuario_pode_realizar_tres_emprestimos():
 def test_usuario_nao_pode_realizar_quarto_emprestimo():
     usuario = usuarios.cadastrar_usuario("Joao", "joao@email.com")
 
-    livro1 = livros.cadastrar_livro("Livro 1", "Autor 1", 2020)
-    livro2 = livros.cadastrar_livro("Livro 2", "Autor 2", 2021)
-    livro3 = livros.cadastrar_livro("Livro 3", "Autor 3", 2022)
-    livro4 = livros.cadastrar_livro("Livro 4", "Autor 4", 2023)
+    livro1 = livros.cadastrar_livro("Livro 1", "Autor Um", 2020)
+    livro2 = livros.cadastrar_livro("Livro 2", "Autor Dois", 2021)
+    livro3 = livros.cadastrar_livro("Livro 3", "Autor Três", 2022)
+    livro4 = livros.cadastrar_livro("Livro 4", "Autor Quatro", 2023)
 
     emprestimos.emprestar(usuario["id"], livro1["id"], date.today())
     emprestimos.emprestar(usuario["id"], livro2["id"], date.today())
