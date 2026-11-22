@@ -19,7 +19,7 @@ def livros_mais_emprestados(top=3):
     contagem = {}
     for e in emprestimos.EMPRESTIMOS:
         contagem[e["livro_id"]] = contagem.get(e["livro_id"], 0) + 1
-    ordenado = sorted(contagem.items(), key=lambda x: x[1])
+    ordenado = sorted(contagem.items(), key=lambda x: x[1], reverse=True)
     resultado = []
     for livro_id, qtd in ordenado[:top]:
         l = livros.buscar_por_id(livro_id)
