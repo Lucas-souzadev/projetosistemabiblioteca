@@ -14,6 +14,14 @@ def emprestimos_ativos_do_usuario(usuario_id):
     return [e for e in EMPRESTIMOS
             if e["usuario_id"] == usuario_id and e["devolvido_em"] is None]
 
+def buscar_emprestimos_por_periodo(data_inicio, data_fim):
+    if data_inicio > data_fim:
+        raise ValueError("A data inicial nao pode ser maior que a data final")
+
+    return [
+        e for e in EMPRESTIMOS
+        if data_inicio <= e["data_emprestimo"] <= data_fim
+    ]
 
 def emprestar(usuario_id, livro_id, data=None):
     if data is None:
