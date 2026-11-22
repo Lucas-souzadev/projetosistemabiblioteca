@@ -32,6 +32,10 @@ def emprestar(usuario_id, livro_id, data=None):
     l = livros.buscar_por_id(livro_id)
     if l is None:
         raise ValueError("Livro nao encontrado")
+
+    if l["disponiveis"] <= 0:
+        raise ValueError("Livro indisponivel para emprestimo")
+
     if len(emprestimos_ativos_do_usuario(usuario_id)) >= LIMITE_EMPRESTIMOS:
         raise ValueError("Limite de emprestimos atingido")
     l["disponiveis"] = l["disponiveis"] - 1

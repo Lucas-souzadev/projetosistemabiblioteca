@@ -42,3 +42,13 @@ def test_usuario_nao_pode_realizar_quarto_emprestimo():
 
     with pytest.raises(ValueError, match="Limite de emprestimos atingido"):
         emprestimos.emprestar(usuario["id"], livro4["id"], date.today())
+
+def test_nao_pode_emprestar_livro_sem_estoque():
+    usuario = usuarios.cadastrar_usuario("Carlos", "carlos@email.com")
+    livro = livros.cadastrar_livro("Harry Potter", "J.K. Rowling", 1997, copias=0)
+
+    with pytest.raises(ValueError, match="Livro indisponivel para emprestimo"):
+        emprestimos.emprestar(usuario["id"], livro["id"], date.today())
+
+    assert livro["disponiveis"] == 0
+    assert len(emprestimos.EMPRESTIMOS) == 0
