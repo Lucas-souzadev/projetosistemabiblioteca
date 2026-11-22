@@ -3,6 +3,7 @@ import usuarios
 import emprestimos
 import relatorios
 import storage
+from datetime import datetime
 
 
 def menu():
@@ -13,6 +14,7 @@ def menu():
     print("4 - Emprestar livro")
     print("5 - Devolver livro")
     print("6 - Resumo")
+    print("7 - Buscar emprestimos por periodo")
     print("0 - Sair")
     return input("Opcao: ")
 
@@ -63,6 +65,35 @@ def main():
                 print("Erro:", erro)
         elif op == "6":
             relatorios.imprimir_resumo()
+        elif op == "7":
+            try:
+                data_inicio = datetime.strptime(
+                    input("Data inicial (dd/mm/aaaa): "), "%d/%m/%Y"
+                ).date()
+
+                data_fim = datetime.strptime(
+                    input("Data final (dd/mm/aaaa): "), "%d/%m/%Y"
+                ).date()
+
+                resultado = emprestimos.buscar_emprestimos_por_periodo(
+                    data_inicio, data_fim
+                )
+
+                if not resultado:
+                    print("Nenhum emprestimo encontrado nesse periodo")
+
+                for e in resultado:
+                    u = usuarios.buscar_por_id(e["usuario_id"])
+                    l = livros.buscar_por_id(e["livro_id"])
+
+                    print("ID:", e["id"])
+                    print("Usuario:", u["nome"])
+                    print("Livro:", l["titulo"])
+                    print("Data do emprestimo:", e["data_emprestimo"].strftime("%d/%m/%Y"))
+                    print("Devolver ate:", e["data_prevista"].strftime("%d/%m/%Y"))
+
+            except ValueError as erro:
+                print("Erro:", erro)
         elif op == "0":
             storage.salvar()
             break
