@@ -55,5 +55,10 @@ def devolver(emprestimo_id, data=None):
             if e["devolvido_em"] is not None:
                 raise ValueError("Emprestimo ja devolvido")
             e["devolvido_em"] = data
+            l = livros.buscar_por_id(e["livro_id"])
+            if l is not None:
+                l["disponiveis"] += 1
+                
             return calcular_multa(e, data)
+        
     raise ValueError("Emprestimo nao encontrado")
