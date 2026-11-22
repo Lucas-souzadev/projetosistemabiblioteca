@@ -33,6 +33,10 @@ def taxa_ocupacao():
     for l in livros.LIVROS:
         total = total + l["copias"]
         disp = disp + l["disponiveis"]
+
+    if total == 0:
+        return 0.0
+
     return (total - disp) / total * 100
 
 
