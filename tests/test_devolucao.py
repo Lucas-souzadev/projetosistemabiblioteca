@@ -15,7 +15,7 @@ def limpar_dados():
 
 def test_devolucao_restaura_copia_disponivel():
     usuario = usuarios.cadastrar_usuario("Joao", "joao@email.com")
-    livro = livros.cadastrar_livro("Livro 1", "Autor 1", 2020, copias=2)
+    livro = livros.cadastrar_livro("Livro 1", "Autor Um", 2020, copias=2)
 
     emprestimo = emprestimos.emprestar(usuario["id"], livro["id"])
 
@@ -28,7 +28,7 @@ def test_devolucao_restaura_copia_disponivel():
 
 def test_devolucao_nao_restaura_estoque_duas_vezes():
     usuario = usuarios.cadastrar_usuario("Joao", "joao@email.com")
-    livro = livros.cadastrar_livro("Livro 1", "Autor 1", 2020, copias=2)
+    livro = livros.cadastrar_livro("Livro 1", "Autor Um", 2020, copias=2)
 
     emprestimo = emprestimos.emprestar(usuario["id"], livro["id"])
     emprestimos.devolver(emprestimo["id"])

@@ -17,9 +17,9 @@ def limpar_dados():
 def test_filtrar_emprestimos_por_periodo():
     usuario = usuarios.cadastrar_usuario("Joao", "joao@email.com")
 
-    livro1 = livros.cadastrar_livro("Livro 1", "Autor 1", 2020)
-    livro2 = livros.cadastrar_livro("Livro 2", "Autor 2", 2021)
-    livro3 = livros.cadastrar_livro("Livro 3", "Autor 3", 2022)
+    livro1 = livros.cadastrar_livro("Livro 1", "Autor Um", 2020)
+    livro2 = livros.cadastrar_livro("Livro 2", "Autor Dois", 2021)
+    livro3 = livros.cadastrar_livro("Livro 3", "Autor Três", 2022)
 
     emprestimos.emprestar(usuario["id"], livro1["id"], date(2026, 11, 10))
     emprestimos.emprestar(usuario["id"], livro2["id"], date(2026, 11, 15))
