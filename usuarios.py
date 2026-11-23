@@ -1,3 +1,5 @@
+import re
+
 USUARIOS = []
 
 
@@ -6,7 +8,7 @@ def cadastrar_usuario(nome, email):
         raise ValueError("Nome obrigatorio")
     if any(caractere.isdigit() for caractere in nome):
         raise ValueError("O nome do usuario nao pode conter numeros")
-    if "@" not in email:
+    if not re.fullmatch(r"[^@\s]+@[^@\s]+\.[^@\s]+", email):
         raise ValueError("Email invalido")
 
     novo_id = max([u["id"] for u in USUARIOS], default=0) + 1
