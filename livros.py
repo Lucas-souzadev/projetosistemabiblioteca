@@ -2,6 +2,9 @@ LIVROS = []
 
 
 def cadastrar_livro(titulo, autor, ano, copias=1):
+    if any(caractere.isdigit() for caractere in autor):
+        raise ValueError("O nome do autor nao pode conter numeros")
+
     if ano <= 0:
         raise ValueError("O ano de publicacao deve ser maior que zero")
 
@@ -15,7 +18,7 @@ def cadastrar_livro(titulo, autor, ano, copias=1):
         "disponiveis": copias,
     }
     LIVROS.append(livro)
-    return livro
+    return livro    
 
 
 def buscar_por_id(livro_id):
